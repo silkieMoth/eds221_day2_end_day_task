@@ -1,0 +1,65 @@
+---
+title: "the_salamander_part"
+author: "Joshua Paul Cohen"
+format: html
+execute: 
+  warning: false
+  message: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+load in csv and update names to snake case
+```{r}
+mack_verts <- read.csv(here("data" , "AS00601.csv"))
+mack_verts <- clean_names(mack_verts)
+```
+
+indexing practice
+```{r}
+mc_wt_5 <- mack_verts$weight[5]
+mc_wt_5
+
+mc_length_8_20 <- mack_verts$length1[8:20]
+mc_length_8_20
+
+mc_dates <- mack_verts$sampledate[]
+```
+
+make subset of D. tenebrosus
+```{r}
+mc_salamanders <- dplyr::filter(mack_verts, species == "DITE")
+```
+
+make scatterplot of D. tenebrosus, length1 by weight g
+```{r}
+ggplot(mc_salamanders, aes(x =length1, y = weight, colour = weight/length1)) + geom_point(size = 3) + scale_color_gradient(low = "grey", high = "black") + labs(x = "snout-vent length (mm)", y = "weight (g)", title = "chonkness v. smolness of D. tenebrosus", subtitle = "round", caption = "
+    Gregory, S.V. and I. Arismendi. 2020")
+```
+
+save the plot
+```{r}
+ggsave(here("figs", "salamander_size.png"), height = 10, width = 6)
+```
+
+again but with species cutthroat trout
+```{r}
+mc_trout <- dplyr::filter(mack_verts, species == "ONCL")
+```
+
+make the plot
+```{r}
+ggplot(mc_trout, aes(x = length1, y = weight, colour = reach)) + scale_color_manual(values = c("white", "grey", "black")) + geom_point() + facet_wrap(vars(reach)) + labs(x = "elngation", y = "chomk", title = "aaaaaaaAAAAAAAAA")
+
+```
+
+```{r}
+ggsave(here("figs", "cutthroat_size.png"))
+```
+

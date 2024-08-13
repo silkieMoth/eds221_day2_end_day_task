@@ -1,0 +1,57 @@
+---
+title: "something_day_2_end"
+author: "Joshua Paul Cohen"
+format: html
+execute: 
+  warning: false
+  message: false
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r}
+
+```
+
+
+```{r}
+vec_1 <- c(2, 5, 9, 10, 8, 12, 1, 0)
+```
+
+variable assignment
+```{r}
+class(vec_1)
+typeof(vec_1)
+vec_1_e3 <- vec_1[3]
+vec_1_e1 <- vec_1[1]
+vec_1_e5to7 <- vec_1[5:7]
+vec_1_char <- as.character(vec_1)
+
+```
+
+dictionaries
+```{r}
+vec_2 <- c(town = "Santa Barbara",
+           location = "Rincon",
+           swell = "south")
+vec_2
+class(vec_2)
+length(vec_2)
+vec_2_e2 <- vec_2[2]
+vec_2_e2
+```
+
+data frame stuff
+```{r}
+df_1 <- data.frame(region = c("A", "B", "A", "D"), species = c("otter", "great white", "sea lion", "gray whale"), count = c(12, 2, 36, 6))
+df_1
+class(df_1)
+class(df_1$species)
+max_count <- max(df_1$count)
+```
+
+goin lizard mode
+
+
+
